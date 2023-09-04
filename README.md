@@ -54,7 +54,7 @@ ref: https://clangd.llvm.org/installation.html
 
 Run the [provided bash script][config-clangd.bash] or manually create the `~/.config/clangd/config.yaml` file with the following content:
 
-[config-clangd.bash]: https://raw.githubusercontent.com/TommyChangUMD/cpp-boilerplate-v2/master/scripts/config-clang.bash
+[config-clangd.bash]: https://raw.githubusercontent.com/TommyChangUMD/cpp-boilerplate-v2/main/scripts/config-clangd.bash
 
 ```
 Diagnostics:
