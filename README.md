@@ -29,7 +29,7 @@ Simple starter C++ project with:
   ./build/app/shell-app
 # Run tests: 
   ctest --test-dir build/
-# Run clean: 
+# Run clean and start over: 
   rm -rf build/
 ```
 
@@ -122,9 +122,9 @@ Alternatively, a program called `bear` can also be used to create `compile_comma
 
 ``` bash
 # build compile_commands.json from scratch
-  bear -- cmake --build build --clean-first 
+  bear -- cmake --build build/ --clean-first 
 # or, update the existing compile_commands.json
-  bear --append -- cmake --build build
+  bear --append -- cmake --build build/
 ```
 
 Either way, this should produce the `compile_commands.json` file.  Now, you can use it with the IDE.
