@@ -16,8 +16,8 @@ Simple starter C++ project with:
 ## Standard install via command-line
 ```bash
 # Download the code:
-  git clone https://github.com/TommyChangUMD/cpp-boilerplate-v2 
-  cd cpp-boilerplate-v2 
+  git clone https://github.com/TommyChangUMD/cpp-boilerplate-v2
+  cd cpp-boilerplate-v2
 # Create make files:
   cmake -S ./ -B build/
 # Compile and build the code:
@@ -25,13 +25,19 @@ Simple starter C++ project with:
   cmake --build build/
   # or rebuild everything from scracth
   cmake --build build/ --clean-first
-# Run program: 
+# Run program:
   ./build/app/shell-app
-# Run tests: 
+# Run tests:
   ctest --test-dir build/
-# Run clean and start over: 
+# Build docs:
+  cmake --build build/ --target docs
+  # open a web browser to browse the doc
+  open docs/html/index.html
+# Clean and start over:
   rm -rf build/
 ```
+
+ref: https://cmake.org/cmake/help/latest/manual/cmake.1.html
 
 <!-- ## Building for code coverage (for assignments beginning in Week 4) -->
 <!-- ``` -->
@@ -43,7 +49,7 @@ Simple starter C++ project with:
 <!-- This generates a index.html page in the build/coverage sub-directory that can be viewed locally in a web browser. -->
 
 
-## Working with C++ IDE and LSP 
+## Working with C++ IDE and LSP
 
 You must set up clangd and use it with the C++ IDE of your choice. Most people use Visual Studio Code, but if you are using some other IDE, be sure to check if it supports the Language Server Protocol (LSP).
 
@@ -112,24 +118,20 @@ See https://joaotavora.github.io/eglot/ for more info.
 
 clangd will automatically run (in the background) when invoked by the IDE. To verify that it's running correctly, you just need to check if the IDE can perform features such as code completion, finding declarations, references, definitions, and symbols, etc.
 
-However, for clangd to work properly, it must ab able to find a file called `compile_commands.json` somewhere in your source code tree.  There are many ways to generate this compilation database file.  CMake can generate it for you if you enable the `CMAKE_EXPORT_COMPILE_COMMANDS` option.  To enable it, put the line below in your top-level `CMakeLists.txt` file:
-
-``` cmake
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-```
+However, for clangd to work properly, it must ab able to find a file called `compile_commands.json` somewhere in your source code tree.  There are many ways to generate this compilation database file.  CMake can generate it for you already (this is done by using `CMAKE_EXPORT_COMPILE_COMMANDS` option).   Everytime you invoke the configuration command `cmake -S ./ -B build/`, cpp-boilerplate-v2 creates a symbolic link to the `compile_commands.json` file.
 
 Alternatively, a program called `bear` can also be used to create `compile_commands.json`, regardless of the C++ build system you are using. It does this by intercepting subsequent command-line commands and collecting all C++ compilation flags passed to the compiler.  To use this approach, prepend `bear --` at the beginning of the build command.   For CMake, you can do:
 
 ``` bash
 # build compile_commands.json from scratch
-  bear -- cmake --build build/ --clean-first 
+  bear -- cmake --build build/ --clean-first
 # or, update the existing compile_commands.json
   bear --append -- cmake --build build/
 ```
 
 Either way, this should produce the `compile_commands.json` file.  Now, you can use it with the IDE.
 
-### Visual studio code 
+### Visual studio code
 1. Open `cpp-boilerplate-v2/app/main.cpp`
 
 1. Move the cursor to the `dummy()` function call and press the F12 key (or right-click->Go to Definition).  Visual studio code should automatically open `cpp-boilerplate-v2/include/lib.hpp` and place the curse at line 5, where the `dummy` function is defined.
