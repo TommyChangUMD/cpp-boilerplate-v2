@@ -28,6 +28,8 @@ Simple starter C++ project with:
 # Run program:
   ./build/app/shell-app
 # Run tests:
+  cd build/; ctest; cd -
+  # or if you have newer cmake
   ctest --test-dir build/
 # Build docs:
   cmake --build build/ --target docs
