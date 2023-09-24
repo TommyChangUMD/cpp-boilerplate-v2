@@ -52,21 +52,44 @@ if ( DOXYGEN_FOUND )
   set( DOXYGEN_MAX_DOT_GRAPH_DEPTH  0 )
   set( DOXYGEN_DOT_TRANSPARENT      YES )
 else()
-  error( "Doxygen need to be installed to generate the doxygen documentation" )
+  message( FATAL_ERROR "Doxygen needs to be installed to generate the doxygen documentation" )
 endif()
 
 #
-# Create compile database for clangd and move it out of the build dir.
+# Create the compilation database for clangd and move it out of the build dir.
 #
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Enable compile_commands.json
 execute_process(COMMAND cmake -E create_symlink
                 "${PROJECT_BINARY_DIR}/compile_commands.json"
                 "${PROJECT_SOURCE_DIR}/compile_commands.json")
 
+
+#
+# Set up code coverage generation.
+# Must compile with debug, e.g,
+#   cmake -S ./ -B build/ -D CMAKE_BUILD_TYPE=Debug
+#
+option(WANT_COVERAGE "this option enable coverage" ON)
+if(NOT CMAKE_BUILD_TYPE MATCHES "Debug")
+  set(WANT_COVERAGE OFF)
+endif()
+
+if(WANT_COVERAGE)
+  message("Enabling coverage")
+  list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake-modules")
+  include(CodeCoverage)
+  # The following line come from cmake-modules/CodeCoverage.cmake
+  append_coverage_compiler_flags() # will add "--coverage" compilation flag
+  # Exclude certain directories from coverage analysis
+  set(COVERAGE_EXCLUDES
+    ${PROJECT_BINARY_DIR}
+    )
+endif()
+
 #
 # c++ Boilerplate Starts Here
-# ref: https://cmake.org/cmake/help/latest/guide/tutorial/index.html
 # ref: https://iamsorush.com/posts/cpp-cmake-essential/
+# ref: https://cmake.org/cmake/help/latest/guide/tutorial/index.html
 #
 add_subdirectory(libs)
 add_subdirectory(app)
@@ -80,3 +103,19 @@ doxygen_add_docs(docs           # target name
   ${PROJECT_SOURCE_DIR}/include
   )
 
+# create targets for building code coverage reports
+if(WANT_COVERAGE)
+  setup_target_for_coverage_gcovr_html (
+    NAME test_coverage          # target name
+    EXECUTABLE ctest || true    # what to run insdie the build directory?
+                                #   '|| true' --> continue coverage even if ctest failed
+    EXCLUDE "app/main.cpp"      # Unit test does not include app's main source code.
+    )
+
+  setup_target_for_coverage_gcovr_html (
+    NAME app_coverage          # target name
+    EXECUTABLE shell-app       # what to run insdie the build directory?
+    EXCLUDE "test/test.cpp"    # App test does not include unit test's main source code.
+    )
+
+endif()
