@@ -309,6 +309,11 @@ export PS1="\n\t \[\033[32m\]\w\[\033[33m\]\$(GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_P
 git log --pretty=fuller
 ```
 
+## See the list modifiled files in the commit log
+```bash
+git log --name-only
+```
+
 ## Get the last push timestamp from GitHub
 Replace "https://github.com/" with "https://api.github.com/repos/"
 example:
