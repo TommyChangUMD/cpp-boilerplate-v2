@@ -314,6 +314,21 @@ git log --pretty=fuller
 git log --name-only
 ```
 
+## List commit logs, one per line
+```bash
+git log --oneline
+```
+
+## Remove all unknown / untracked files
+```bash
+git clean -df
+```
+
+## Graphical program
+```bash
+gitk
+```
+
 ## Get the last push timestamp from GitHub
 Replace "https://github.com/" with "https://api.github.com/repos/"
 example:
