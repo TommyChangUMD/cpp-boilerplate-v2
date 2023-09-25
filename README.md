@@ -1,9 +1,7 @@
 # cpp-boilerplate-v2
 
-<!-- # C++ Boilerplate Badges -->
-<!-- [![Build Status](https://github.com/TommyChangUMD/cpp-boilerplate/actions/workflows/build_and_coveralls.yml/badge.svg)](https://github.com/TommyChangUMD/cpp-boilerplate/actions/workflows/build_and_coveralls.yml) -->
-
-<!-- [![Coverage Status](https://coveralls.io/repos/github/TommyChangUMD/cpp-boilerplate/badge.svg?branch=master)](https://coveralls.io/github/TommyChangUMD/cpp-boilerplate?branch=master) -->
+# C++ Boilerplate v2 Badges
+![CICD Workflow status](https://github.com/TommyChangUMD/cpp-boilerplate-v2/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg) [![codecov](https://codecov.io/gh/TommyChangUMD/cpp-boilerplate-v2/branch/main/graph/badge.svg)](https://codecov.io/gh/TommyChangUMD/cpp-boilerplate-v2)
 
 
 ## Overview
@@ -18,7 +16,7 @@ Simple starter C++ project with:
 # Download the code:
   git clone https://github.com/TommyChangUMD/cpp-boilerplate-v2
   cd cpp-boilerplate-v2
-# Configure the project and generate a native build system: 
+# Configure the project and generate a native build system:
   # Must re-run this command whenever any CMakeLists.txt file has been changed.
   cmake -S ./ -B build/
 # Compile and build the project:
@@ -59,7 +57,7 @@ ref: https://cmake.org/cmake/help/latest/manual/cmake.1.html
   open build/test_coverage/index.html
 
 This generates a index.html page in the build/test_coverage sub-directory that can be viewed locally in a web browser.
-``` 
+```
 
 You can also get code coverage report for the *shell-app* target, instead of unit test. Repeat the previous 2 steps but with the *app_coverage* target:
 
@@ -71,6 +69,59 @@ You can also get code coverage report for the *shell-app* target, instead of uni
 
 This generates a index.html page in the build/app_coverage sub-directory that can be viewed locally in a web browser.
 ```
+
+## How to use GitHub CI to upload coverage report to Codecov
+
+### First, sign up Codecov with you GitHub account.
+
+  https://about.codecov.io/sign-up/
+
+### Enable the repository you want to upload from
+
+After you sign in, you should see a list of your repositories (you may
+have to refresh and reload the page a few times). Enable the one you
+want to receive coverage data from.
+
+### Create a GitHub CI yaml file
+
+See below for the setup of this repo:
+
+https://github.com/TommyChangUMD/cpp-boilerplate-v2/blob/main/.github/workflows/run-unit-test-and-upload-codecov.yml
+
+### Add your Codecov and GitHub CI badge to README.md
+
+Follow the instruction below to copy the badge (in markdown format)
+and paste it at the top of your README.md file.
+
+For example:
+#### CICD Workflow status
+
+https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge
+
+For example,
+
+To generate the CICD badge for this particular repo, I put the line below in this README.md file:
+``` markdown
+![CICD Workflow status](https://github.com/TommyChangUMD/cpp-boilerplate-v2/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg)
+```
+![CICD Workflow status](https://github.com/TommyChangUMD/cpp-boilerplate-v2/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg)
+
+
+#### Code Coverage Report
+https://docs.codecov.com/docs/status-badges
+
+For example, to generate the Code Coverage badge for this particular repo,  I put the line below in this README.md file:
+``` markdown
+[![codecov](https://codecov.io/gh/TommyChangUMD/cpp-boilerplate-v2/branch/main/graph/badge.svg)](https://codecov.io/gh/TommyChangUMD/cpp-boilerplate-v2)
+```
+
+[![codecov](https://codecov.io/gh/TommyChangUMD/cpp-boilerplate-v2/branch/main/graph/badge.svg)](https://codecov.io/gh/TommyChangUMD/cpp-boilerplate-v2)
+
+
+
+Note: When you click on the codecov badge, you should see the coverage
+report.  You should also see the source file listing.  If not, you may
+need to login your codecov account first.
 
 
 ## Working with C++ IDE and LSP

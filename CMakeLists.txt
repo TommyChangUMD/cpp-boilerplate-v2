@@ -105,17 +105,23 @@ doxygen_add_docs(docs           # target name
 
 # create targets for building code coverage reports
 if(WANT_COVERAGE)
-  setup_target_for_coverage_gcovr_html (
+  # unit test coverage:
+  setup_target_for_coverage_lcov ( # use lcov to generate coverage report
     NAME test_coverage          # target name
     EXECUTABLE ctest || true    # what to run insdie the build directory?
                                 #   '|| true' --> continue coverage even if ctest failed
-    EXCLUDE "app/main.cpp"      # Unit test does not include app's main source code.
+    EXCLUDE
+      "app/main.cpp"     # Unit test does not run app, so don't analyze it
+      "*gtest*"          # Don't analyze googleTest code
+      "/usr/include/*"   # Don't analyze system headers
     )
 
-  setup_target_for_coverage_gcovr_html (
+  # code coverage for the app (shell-app):
+  # Use gcovr insetad of lcov if you want to see branch coverage as well
+  setup_target_for_coverage_gcovr_html ( # use gcovr to generate coverage report
     NAME app_coverage          # target name
     EXECUTABLE shell-app       # what to run insdie the build directory?
-    EXCLUDE "test/test.cpp"    # App test does not include unit test's main source code.
+    EXCLUDE "test/test.cpp"    # App does not run unit test, so don't analyze it
     )
 
 endif()

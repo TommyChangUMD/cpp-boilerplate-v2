@@ -387,7 +387,8 @@ function(setup_target_for_coverage_lcov)
     # Show info where to find the report
     add_custom_command(TARGET ${Coverage_NAME} POST_BUILD
         COMMAND ;
-        COMMENT "Open ./${Coverage_NAME}/index.html in your browser to view the coverage report."
+        # TC 2023-09-24 (Sun) -- clarify the output of the html is always inside the build dir
+        COMMENT "To view the coverage report, open: \n ${PROJECT_BINARY_DIR}/${Coverage_NAME}/index.html"
     )
 
 endfunction() # setup_target_for_coverage_lcov
@@ -546,8 +547,9 @@ function(setup_target_for_coverage_gcovr_html)
     )
     # Running gcovr
     set(GCOVR_HTML_CMD
-        ${GCOVR_PATH} --html ${Coverage_NAME}/index.html --html-details -r ${BASEDIR} ${GCOVR_ADDITIONAL_ARGS}
-        ${GCOVR_EXCLUDE_ARGS} --object-directory=${PROJECT_BINARY_DIR}
+      # ${GCOVR_PATH} --html ${Coverage_NAME}/index.html --html-details -r ${BASEDIR} ${GCOVR_ADDITIONAL_ARGS}
+      ${GCOVR_PATH} --xml ${Coverage_NAME}.xml --exclude-unreachable-branches --exclude-throw-branches --html ${Coverage_NAME}/index.html --html-details -r ${BASEDIR} ${GCOVR_ADDITIONAL_ARGS}  
+      ${GCOVR_EXCLUDE_ARGS} --object-directory=${PROJECT_BINARY_DIR}
     )
 
     if(CODE_COVERAGE_VERBOSE)

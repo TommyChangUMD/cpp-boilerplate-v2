@@ -1,0 +1,61 @@
+##############################################################################
+#
+# GitGub CI workflow syntax spec:
+#    https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+#
+# CodeCov github action setup:
+#    https://github.com/codecov/codecov-action
+#
+# CodeCov badge setup:
+#    https://docs.codecov.com/docs/status-badges
+#
+# version 1.1
+##############################################################################
+
+name: Run Unit Test and Upload Coverage Report
+
+on:
+  # Triggered whenever push to main 
+  push:
+    branches: [ "main" ]
+
+  # Triggered whenever a pull request is created on main
+  pull_request:
+    branches: [ "main" ]
+    types: [opened]
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  build-run-upload:
+    # Create a container of the latest Ubuntu, other values could be
+    # ubuntu-latest, ubuntu-22.04, etc.
+    runs-on: ubuntu-22.04
+    
+    steps:
+      # We want to use GitHub CI checkout version 3 to check out our branch
+      - uses: actions/checkout@v3
+      
+      # Install some system pacakges
+      - name: Install build packages
+        run: |
+          sudo apt update
+          sudo apt install -y software-properties-common
+          sudo apt install -y doxygen lcov gcovr
+          
+      # Build, run unit test, and generate coverage report
+      - name: Configure CMake flags and build exectables
+        run: |
+          cmake -D WANT_COVERAGE=ON -D CMAKE_BUILD_TYPE=Debug -S ./ -B build/
+          cmake --build build/ --clean-first --target all test_coverage
+
+      # Upload coverage result to CodeCov
+      - name: Upload coverage result to CodeCov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          files: ${{github.workspace}}/build/test_coverage.info
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)      
+          
