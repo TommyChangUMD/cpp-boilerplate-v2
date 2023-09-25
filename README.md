@@ -95,6 +95,8 @@ CompileFlags:
   # Add: [-xc++, -std=c++17, -Wall, -Wno-missing-prototypes]
   Add: [-std=c++17]
 
+  # Get rid of error [drv_unknown_argument]: Unknown argument: '-fprofile-abs-path'
+  Remove: [-fprofile-abs-path]
 ```
 
 This configuration instructs clangd to use C++-17 standard and catch any unused include files.  You are welcome to customize it further.   See https://clangd.llvm.org/config for more info.
