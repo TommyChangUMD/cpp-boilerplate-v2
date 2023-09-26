@@ -13,6 +13,7 @@ git diff
 git stash
 git commit
 git reset
+git tag
 git help
 ```
 
