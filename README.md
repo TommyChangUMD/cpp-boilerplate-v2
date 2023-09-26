@@ -47,8 +47,8 @@ ref: https://cmake.org/cmake/help/latest/manual/cmake.1.html
 ## Building for code coverage (for assignments beginning in Week 4)
 
 ```bash
-# if you don't have gcovr installed, do:
-  sudo apt-get install gcovr
+# if you don't have gcovr or lcov installed, do:
+  sudo apt-get install gcovr lcov
 # Set the build type to Debug and WANT_COVERAGE=ON
   cmake -D WANT_COVERAGE=ON -D CMAKE_BUILD_TYPE=Debug -S ./ -B build/
 # Now, do a clean compile, run unit test, and generate the covereage report
