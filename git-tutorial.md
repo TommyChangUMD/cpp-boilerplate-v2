@@ -269,10 +269,11 @@ git rebase -i <sha1_id_parent_of_commit>
 ```bash
 git push --force
 ```
+
 ## Redo a particular old commit that has been pushed already
 1. get the commit sha1 IDs
 ```bash
-git log
+git log --oneline
 ```
 2. start the rebase process
 ```bash
@@ -289,6 +290,26 @@ git rebase --continue
 ```bash
 git push --force
 ```
+## Squash a series of commits that have been pushed already into one
+1. get the commit sha1 IDs
+```bash
+git log --oneline
+```
+2. start the rebase process
+```bash
+git rebase -i <sha1_id_of_parent_commit> 
+```
+3. The default editor will popup, mark the first / top commit *edit* and the result *squash*.
+4. Commit the change
+5. finish the rebase process:
+```
+git rebase --continue
+```
+6. Finally push the change:
+```bash
+git push --force
+```
+
 ## Change the timestamps of commits that has been pushed already
 Change both the `author date` and `commit date` for all commits after a particualr commit.
 ```bash
