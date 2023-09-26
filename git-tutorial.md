@@ -348,6 +348,8 @@ git clean -df
 ## Graphical program
 ```bash
 gitk
+# to show all branches
+gitk --all
 ```
 
 ## Get the last push timestamp from GitHub
