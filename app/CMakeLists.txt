@@ -18,3 +18,8 @@ target_link_libraries(shell-app PUBLIC
   myLib1
   myLib2
   )
+
+target_link_options(shell-app PUBLIC
+  --static
+  )
+  

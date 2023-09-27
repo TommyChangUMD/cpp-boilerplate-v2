@@ -121,7 +121,9 @@ if(WANT_COVERAGE)
   setup_target_for_coverage_gcovr_html ( # use gcovr to generate coverage report
     NAME app_coverage          # target name
     EXECUTABLE shell-app       # what to run insdie the build directory?
-    EXCLUDE "test/test.cpp"    # App does not run unit test, so don't analyze it
+    EXCLUDE
+    "test/test.cpp"    # App does not run unit test, so don't analyze it
+    "test/main.cpp"    # App does not run unit test, so don't analyze it
     )
 
 endif()
