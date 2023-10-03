@@ -87,7 +87,7 @@ if(WANT_COVERAGE)
 endif()
 
 #
-# c++ Boilerplate Starts Here
+# c++ Boilerplate Modification Starts Here
 # ref: https://iamsorush.com/posts/cpp-cmake-essential/
 # ref: https://cmake.org/cmake/help/latest/guide/tutorial/index.html
 #
@@ -128,3 +128,8 @@ if(WANT_COVERAGE)
     )
 
 endif()
+
+# Sanity check:
+# can also do "cmake -S ./ -B build/ -LAH" to print all variables
+message(STATUS "CMAKE_BUILD_TYPE = ${CMAKE_BUILD_TYPE}")
+message(STATUS "WANT_COVERAGE    = ${WANT_COVERAGE}")
