@@ -12,8 +12,10 @@
   cmake --build build/ --clean-first
   # to see verbose output, do:
   cmake --build build/ --verbose
-# Run program:
-  ./build/app/shell-app
+# Run test:
+  ctest --test-dir build/
+  # to filter the output to show only certain tests
+  ctest --test-dir build/ -R any_key_word_to_filter
 # Clean
   cmake --build build/ --target clean
 # Clean and start over:
