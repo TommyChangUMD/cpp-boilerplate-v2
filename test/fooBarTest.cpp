@@ -5,7 +5,7 @@
 // Google Test exercise:
 // ref: https://www.linkedin.com/learning/test-driven-development-in-c-plus-plus
 //
-// Write a funtion that receives and prints a passed in number.
+// Write a function that receives and prints a passed in number.
 // - When the input is multiple of 3, print "Foo"
 // - When the input is multiple of 5, print "Bar"
 // - When the input both multiple of 3 and 5, print "FooBar"
@@ -13,14 +13,14 @@
 
 // Tests:
 //  - [X] Can call the fooBar() function
-//  - [X] Get "1" when presss 1.
-//  - [X] Get "2" when presss 2.
-//  - [X] Get "Foo" when presss 3.
-//  - [X] Get "Bar" when presss 5.
-//  - [X] Get "Foo" when presss 6.
-//  - [X] Get "Bar" when presss 10.
-//  - [X] Get "FooBar" when presss 15.
-//  - [X] Get "FooBar" when presss 30.
+//  - [X] Get "1" when pass 1.
+//  - [X] Get "2" when pass 2.
+//  - [X] Get "Foo" when pass 3.
+//  - [X] Get "Bar" when pass 5.
+//  - [X] Get "Foo" when pass 6.
+//  - [X] Get "Bar" when pass 10.
+//  - [X] Get "FooBar" when pass 15.
+//  - [X] Get "FooBar" when pass 30.
 
 bool IsMultiple (int val, int factor) {
   return ((val % factor) == 0);
