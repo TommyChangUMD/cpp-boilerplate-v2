@@ -75,12 +75,29 @@ This generates a index.html page in the build/app_coverage sub-directory that ca
 ### First, sign up Codecov with you GitHub account.
 
   https://about.codecov.io/sign-up/
+  
+### Configure the repository you want to upload from
 
-### Enable the repository you want to upload from
+After you sign in, you should see a list of your
+repositories. Configure the one you want to receive coverage data
+from.
 
-After you sign in, you should see a list of your repositories (you may
-have to refresh and reload the page a few times). Enable the one you
-want to receive coverage data from.
+In the confiuration screen, scroll down to "**Step 2: add repository
+token as repository secret**"
+
+You should see a pre-generated repository secrete like below:
+ 
+  "CODECOV_TOKEN"    "fb85d2f0-8db8-48cc-9e8e-9681d51fd9c4"  <--- **this is just an example**
+
+Now, click on the **"repository secret"** link, which takes you back to
+your GitHub account, and add the above as a New Secret:  **(your Secret # is different)**
+
+   - Name = CODECOV_TOKEN
+   
+   - Secret = fb85d2f0-8db8-48cc-9e8e-9681d51fd9c4
+
+Click the "Add secret" button.
+
 
 ### Create a GitHub CI yaml file
 
