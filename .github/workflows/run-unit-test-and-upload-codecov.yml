@@ -49,14 +49,14 @@ jobs:
         run: |
           cmake -D WANT_COVERAGE=ON -D CMAKE_BUILD_TYPE=Debug -S ./ -B build/
           cmake --build build/ --clean-first --target all test_coverage
-          cat build/test_coverage.xml
+          cat build/test_coverage.info
 
       # Upload coverage result to CodeCov
       - name: Upload coverage result to CodeCov
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # required (must add token in your github repo)
-          files: ${{github.workspace}}/build/test_coverage.xml
+          files: ${{github.workspace}}/build/test_coverage.info
           fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)
           disable_search: true # optional (default = false)
