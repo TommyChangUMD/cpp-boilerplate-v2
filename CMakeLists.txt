@@ -106,7 +106,7 @@ doxygen_add_docs(docs           # target name
 # create targets for building code coverage reports
 if(WANT_COVERAGE)
   # unit test coverage:
-  setup_target_for_coverage_lcov ( # use lcov to generate coverage report
+  setup_target_for_coverage_gcovr_html ( # use gcovr to generate coverage report
     NAME test_coverage          # target name
     EXECUTABLE ctest || true    # what to run insdie the build directory?
                                 #   '|| true' --> continue coverage even if ctest failed
