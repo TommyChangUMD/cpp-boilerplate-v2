@@ -14,4 +14,4 @@ target_include_directories(shell-app PUBLIC
 )
 
 # Use static linking to create a stand-alone executable.
-target_link_options(shell-app PUBLIC --static)
+target_link_libraries(shell-app PUBLIC -static)
