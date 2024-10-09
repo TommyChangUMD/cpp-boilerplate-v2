@@ -60,3 +60,4 @@ jobs:
           fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)
           disable_search: true # optional (default = false)
+          plugin: none         # optional (xcode, gcov, pycoverage)
