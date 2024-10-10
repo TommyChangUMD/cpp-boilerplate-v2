@@ -5,6 +5,8 @@
 # Configure the project and generate a native build system:
   # Must re-run this command whenever any CMakeLists.txt file has been changed.
   cmake -S ./ -B build/
+# To build with debugging information, do:
+  cmake -S ./ -B build/ -D CMAKE_BUILD_TYPE=Debug
 # Compile and build the project:
   # rebuild only files that are modified since the last build
   cmake --build build/
