@@ -14,8 +14,10 @@
   cmake --build build/ --verbose
 # Run test:
   ctest --test-dir build/
-  # to filter the output to show only certain tests
-  ctest --test-dir build/ -R any_key_word_to_filter
+  # to run only certain tests
+  ctest --test-dir build/ -R any_part_of_test_name
+  # to see verbose output
+  ctest --test-dir build/ -V
 # Clean
   cmake --build build/ --target clean
 # Clean and start over:

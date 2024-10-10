@@ -62,9 +62,9 @@ public:
 //==================================
 
 
-class GMockTests : public testing::Test {
+class GMockTests_v2 : public testing::Test {
 public:
-  GMockTests () :
+  GMockTests_v2 () :
     dataHolder (&mockQueueObj) {
   };
   
@@ -86,15 +86,16 @@ protected:
 // Unit Tests
 //==================================
 
-TEST_F (GMockTests, canAddData_v2) {
+TEST_F (GMockTests_v2, canAddData) {
   // Setup Mock behavior
   EXPECT_CALL (mockQueueObj, enqueue(_));
+  //EXPECT_CALL (mockQueueObj, dequeue());
 
   // Run the test
   dataHolder.AddData(1);
 }
 
-TEST_F (GMockTests, canAddAndGetData_v2) {
+TEST_F (GMockTests_v2, canAddAndGetData) {
 
   // Setup Mock behavior
   EXPECT_CALL (mockQueueObj, enqueue(1));
