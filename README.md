@@ -1,4 +1,4 @@
-# Valgrind Exercise
+# Eigen Demo
 
 ## Standard install via command-line
 ```bash
