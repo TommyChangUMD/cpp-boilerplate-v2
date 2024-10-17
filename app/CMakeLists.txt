@@ -15,7 +15,7 @@ add_executable(shell-app
 target_include_directories(shell-app PUBLIC
   # list inclue directories:
   ${OpenCV_INCLUDE_DIRS}
-)
+  )
 
 # Any libries that needed to linked with this target.
 # Note: we do not need to specify additional libraries for the

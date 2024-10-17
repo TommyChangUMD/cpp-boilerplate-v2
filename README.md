@@ -1,4 +1,4 @@
-# Valgrind Exercise
+# OpenCV Demo
 
 ## Standard install via command-line
 ```bash
