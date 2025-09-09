@@ -161,7 +161,7 @@ Diagnostics:
 CompileFlags:
   # Treat code as C++, use C++17 standard, enable more warnings.
   # Add: [-xc++, -std=c++17, -Wall, -Wno-missing-prototypes]
-  Add: [-std=c++17]
+  Add: ["-std=c++17", "-I/usr/include/c++/11", "-I/usr/include/x86_64-linux-gnu/c++/11"]
 
   # Get rid of error [drv_unknown_argument]: Unknown argument: '-fprofile-abs-path'
   Remove: [-fprofile-abs-path]
@@ -210,7 +210,7 @@ See https://joaotavora.github.io/eglot/ for more info.
 
 ## Verify C++ IDE and LSP are working
 
-clangd will automatically run (in the background) when invoked by the IDE. To verify that it's running correctly, you just need to check if the IDE can perform features such as code completion, finding declarations, references, definitions, and symbols, etc.
+clangd will automatically run in the background when invoked by the IDE. To verify that it is running correctly, check whether the IDE can perform features such as code completion, and locating declarations, references, definitions, and symbols.
 
 However, for clangd to work properly, it must ab able to find a compilation database file called `compile_commands.json`.  There are many ways to generate this json file.  CMake can generate it using the `CMAKE_EXPORT_COMPILE_COMMANDS` option.
 
@@ -229,6 +229,10 @@ Alternatively, a program called `bear` can also be used to create `compile_comma
   bear -- cmake --build build/ --clean-first
 # or, update the existing compile_commands.json
   bear --append -- cmake --build build/
+# there should be a compile_commands.json file in the current directory
+  ls -l ./compile_commands.json
+# to make it consistent with cmake's convention, move it to the build/ directory
+  mv compile_commands.json build/
 ```
 
 Either way, this should produce the `compile_commands.json` file.  Now, you can use it with the IDE.
@@ -236,9 +240,9 @@ Either way, this should produce the `compile_commands.json` file.  Now, you can 
 ### Visual studio code
 1. Open `cpp-boilerplate-v2/app/main.cpp`
 
-1. Move the cursor to the `dummy()` function call and press the F12 key (or right-click->Go to Definition).  Visual studio code should automatically open `cpp-boilerplate-v2/include/lib.hpp` and place the curse at line 5, where the `dummy` function is defined.
+1. Click the `dummy()` function call and press the F12 key (or right-click->Go to Definition).  Visual studio code should automatically open `cpp-boilerplate-v2/include/lib.hpp` and place the curse at line 5, where the `dummy` function is defined.
 
-1. Close the editor, delete the `compile_commands.json` file and repeat.  Verify that *step 2 does not work anymore*.
+1. Close the editor, delete the `build/compile_commands.json` file and repeat.  Verify that *step 2 does not work anymore*.
 
 ### Emacs
 
@@ -246,4 +250,4 @@ Either way, this should produce the `compile_commands.json` file.  Now, you can 
 
 1. Move the cursor to the `dummy()` function call and press the `<M-.>` key (or xref-find-definitions).  Emacs should automatically open `cpp-boilerplate-v2/include/lib.hpp` and place the curse at line 5, where the `dummy` function is defined.
 
-1. Close the editor, delete the `compile_commands.json` file and repeat.  Verify that *step 2 does not work anymore*.
+1. Close the editor, delete the `build/compile_commands.json` file and repeat.  Verify that *step 2 does not work anymore*.

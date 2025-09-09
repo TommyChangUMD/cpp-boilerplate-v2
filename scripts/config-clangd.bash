@@ -21,7 +21,7 @@ Diagnostics:
 CompileFlags:
   # Treat code as C++, use C++17 standard, enable more warnings.
   # Add: [-xc++, -std=c++17, -Wall, -Wno-missing-prototypes]
-  Add: [-std=c++17]
+  Add: ["-std=c++17", "-I/usr/include/c++/11", "-I/usr/include/x86_64-linux-gnu/c++/11"]
 
   # Get rid of error [drv_unknown_argument]: Unknown argument: '-fprofile-abs-path'
   Remove: [-fprofile-abs-path]
