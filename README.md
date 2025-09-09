@@ -75,7 +75,7 @@ This generates a index.html page in the build/app_coverage sub-directory that ca
 ### First, sign up Codecov with you GitHub account.
 
   https://about.codecov.io/sign-up/
-  
+
 ### Configure the repository you want to upload from
 
 After you sign in, you should see a list of your
@@ -86,14 +86,14 @@ In the confiuration screen, scroll down to "**Step 2: add repository
 token as repository secret**"
 
 You should see a pre-generated repository secrete like below:
- 
+
   "CODECOV_TOKEN"    "fb85d2f0-8db8-48cc-9e8e-9681d51fd9c4"  <--- **this is just an example**
 
 Now, click on the **"repository secret"** link, which takes you back to
 your GitHub account, and add the above as a New Secret:  **(your Secret # is different)**
 
    - Name = CODECOV_TOKEN
-   
+
    - Secret = fb85d2f0-8db8-48cc-9e8e-9681d51fd9c4
 
 Click the "Add secret" button.
@@ -173,7 +173,7 @@ This configuration instructs clangd to use C++-17 standard and catch any unused 
 
 Download vscode from https://code.visualstudio.com/docs/?dv=linux64_deb.
 
-To install and it on your Ubuntu, do
+To install and run it on your Ubuntu, assuming the downloaded debian file is `code_1.81.1-1691620686_amd64.deb`, do:
 
 ``` bash
 cd ~/Downloads
@@ -212,14 +212,14 @@ See https://joaotavora.github.io/eglot/ for more info.
 
 clangd will automatically run (in the background) when invoked by the IDE. To verify that it's running correctly, you just need to check if the IDE can perform features such as code completion, finding declarations, references, definitions, and symbols, etc.
 
-However, for clangd to work properly, it must ab able to find a file called `compile_commands.json` somewhere in your source code tree.  There are many ways to generate this compilation database file.  CMake can generate it for you already (this is done by using `CMAKE_EXPORT_COMPILE_COMMANDS` option).   Everytime you invoke the configuration command `cmake -S ./ -B build/`, cpp-boilerplate-v2 creates a symbolic link to the `compile_commands.json` file.
+However, for clangd to work properly, it must ab able to find a compilation database file called `compile_commands.json`.  There are many ways to generate this json file.  CMake can generate it using the `CMAKE_EXPORT_COMPILE_COMMANDS` option.
 
 ``` bash
   # generate compile_commands.json
   cmake -S ./ -B build/
   # verify compile_commands.json has been generated
-  ls -l compile_commands.json
-  cat compile_commands.json
+  ls -l build/compile_commands.json
+  cat build/compile_commands.json
 ```
 
 Alternatively, a program called `bear` can also be used to create `compile_commands.json`, regardless of the C++ build system you are using. It does this by intercepting subsequent command-line commands and collecting all C++ compilation flags passed to the compiler.  To use this approach, prepend `bear --` at the beginning of the build command.   For CMake, you can do:

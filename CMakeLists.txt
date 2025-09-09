@@ -56,12 +56,9 @@ else()
 endif()
 
 #
-# Create the compilation database for clangd and move it out of the build dir.
+# Create the compilation database for clangd
 #
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Enable compile_commands.json
-execute_process(COMMAND cmake -E create_symlink
-                "${PROJECT_BINARY_DIR}/compile_commands.json"
-                "${PROJECT_SOURCE_DIR}/compile_commands.json")
 
 
 #
