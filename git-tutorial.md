@@ -26,7 +26,7 @@ git help
 
 
 ## 1.) clone a git repo
-It could be any repo.  Let's use cpp-boilerplate-v2 as an example. 
+It could be any repo.  Let's use cpp-boilerplate-v2 as an example.
 ```bash
 git clone https://github.com/TommyChangUMD/cpp-boilerplate-v2
 cd cpp-boilerplate-v2
@@ -123,28 +123,28 @@ git remote set-head origin main
 ## 13.) Verify the new repo in GitHub
 
 You should now get an identical repo, which you can modify.  How is
-this different from forking a repo?  
+this different from forking a repo?
 
 A forked repo can not be forked again.
 
-# Delete a repository on GitHub
+# Delete a GitHub repository
 1. Click: Profile Icon->"Your repositories"
 2. Click the repo you want to delete
 3. Click "Settings" (next to the gear icon)
 4. Scroll all the way down to the "Danger Zone" section
-5. Click "Delete this repository" 
+5. Click "Delete this repository"
 
-# Create a new empty repo on GitHub
+# Create a new GitHub repo
 1. Click: Profile Icon->"Your repositories"->"New" button
 2. Assign a "Repository Name" (could be any name you want)
 3. Click the "Create repository" button
 
-# Fork a Git repository on GitHub
+# Fork a GitHub repository
 1. Go to repo GitHub you want to fork and click "Fork"
 2. Assign a "Repository Name" for the forked repo
 3. Click the "Fork" button
 
-# Create a Pull/Merge Request 
+# Create a Pull/Merge Request
 ## using GitHub
 1. Commit some changes to the forked repo (in a separate new branch)
 2. Click "Pull Request"
@@ -155,7 +155,7 @@ A forked repo can not be forked again.
 ## using command-line
 Just create a new branch to do you work.  When done, email your repo and branch names to the original author.
 
-# Accept a Pull/Merge Request 
+# Accept a Pull/Merge Request
 ## using GitHub
 0. The original repo author goes to his/her GitHub
 1. A number "1" shows up next to "Pull Requests", click on it.
@@ -173,7 +173,7 @@ git pull <repo_name> <branch_name>
 
 # Keep your fork up to date
 ## using GitHub
-Click "sync fork" 
+Click "sync fork"
 ## using command-line
 1. setup upstream remote repo
 ```bash
@@ -182,12 +182,12 @@ Click "sync fork"
 git remote add upstream git@github.com:TommyChangUMD/cpp-boilerplate-v2.git
 
 # verify step
-git remote show 
+git remote show
 git remote show upstream
 ```
 2. merge with the latest upstream's main branch
 ```bash
-git checkout main 
+git checkout main
 git pull upstream main
 git commit -m "sync with upstream"
 git push
@@ -229,7 +229,7 @@ git checkout .
 ```
 Warning: Will lose all changes you made to the local branch.
 
-## Stash away all my local changes temporarily 
+## Stash away all my local changes temporarily
 ```bash
 # stash away the changes
 git stash
@@ -247,7 +247,7 @@ git stash pop
 ```bash
 git fetch
 ```
-Or 
+Or
 ```bash
 git remote update
 ```
@@ -324,7 +324,7 @@ git log --oneline
 git rebase -i <sha1_id>~1
 ```
 3. The default editor will popup, choose the *edit* command
-4. Add, remove, edit files, etc. 
+4. Add, remove, edit files, etc.
 5. Commit the changes with the `--amend` option
 ```bash
 git commit --amend
@@ -344,7 +344,7 @@ git log --oneline
 ```
 2. start the rebase process
 ```bash
-git rebase -i <sha1_id_of_parent_commit> 
+git rebase -i <sha1_id_of_parent_commit>
 ```
 3. The default editor will popup, mark the first / top commit *edit* and the result *squash*.
 4. Commit the changes with the `--amend` option
@@ -418,7 +418,7 @@ Replace "https://github.com/" with "https://api.github.com/repos/"
 example:
 ```bash
 # for repo at https://github.com/TommyChangUMD/cpp-boilerplate-v2, do
-curl https://api.github.com/repos/TommyChangUMD/cpp-boilerplate-v2 
+curl https://api.github.com/repos/TommyChangUMD/cpp-boilerplate-v2
 curl https://api.github.com/repos/TommyChangUMD/cpp-boilerplate-v2 | grep pushed_at
 ```
 
