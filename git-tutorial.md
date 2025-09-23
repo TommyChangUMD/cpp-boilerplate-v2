@@ -169,6 +169,9 @@ Just create a new branch to do you work.  When done, email your repo and branch 
 2. from the main branch, do
 ```
 git pull <repo_name> <branch_name>
+# exmaple:
+#  git pull git@github.com:TommyChangUMD/cpp-boilerplate-v2.git main
+
 ```
 
 # Keep your fork up to date
