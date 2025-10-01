@@ -105,9 +105,9 @@ if(WANT_COVERAGE)
   # unit test coverage:
   setup_target_for_coverage_lcov ( # use lcov to generate coverage report
     NAME test_coverage          # target name
-    #EXECUTABLE ctest || true    # what to run insdie the build directory?
+    EXECUTABLE ctest || true    # what to run insdie the build directory?
                                  #   '|| true' --> continue coverage even if ctest failed
-    EXECUTABLE ctest     # what to run insdie the build directory?
+    # EXECUTABLE ctest     # what to run insdie the build directory?
     EXCLUDE
       "app/main.cpp"     # Unit test does not run app, so don't analyze it
       "*gtest*"          # Don't analyze googleTest code
